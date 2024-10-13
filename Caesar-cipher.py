@@ -16,21 +16,25 @@ def encrypt(text, shift):
     return result
 
 # Function to decrypt the message
-def decrypt(text, shift):
-    return encrypt(text, -shift)
+def decrypt(text, shift, original_shift):
+    if shift == original_shift:
+        return encrypt(text, -shift)
+    else:
+        return "Error: Incorrect shift value for decryption!"
 
 # Main program to take user input
 def main():
     print("Caesar Cipher Program")
-    message = input("Enter the message: ")
-    shift = int(input("Enter shift value: "))
     
-    # Encrypting the message
+    # Encrypt the message
+    message = input("Enter the message to encrypt: ")
+    shift = int(input("Enter shift value for encryption: "))
     encrypted_message = encrypt(message, shift)
     print(f"Encrypted message: {encrypted_message}")
     
-    # Decrypting the message
-    decrypted_message = decrypt(encrypted_message, shift)
+    # Decrypt the message
+    decrypt_shift = int(input("Enter shift value for decryption: "))
+    decrypted_message = decrypt(encrypted_message, decrypt_shift, shift)
     print(f"Decrypted message: {decrypted_message}")
 
 if __name__ == "__main__":
